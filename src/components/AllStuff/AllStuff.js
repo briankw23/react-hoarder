@@ -20,7 +20,19 @@ class AllStuff extends React.Component {
   render() {
     const stuffComponents = this.state.allStuff.map((stuff) => {
       return (
-        <h2>{stuff.itemName}</h2>
+        <div className="row">
+          <div className="col-sm-6 col-md-4">
+            <div className="thumbnail">
+              <img src={stuff.itemImage} alt="..."/>
+              <div className="caption">
+                <h3>{stuff.itemName}</h3>
+                <p>{stuff.itemDescription}</p>
+                <p><a href="#" className="btn btn-success" role="button">Save</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       );
     });
     return (
