@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import authRequests from '../../firebaseRequests/auth';
 import './Register.css';
 
 class Register extends React.Component {
@@ -11,7 +12,16 @@ class Register extends React.Component {
   };
 
   registerClickEvent = (e) => {
-
+    const { user } = this.state;
+    e.preventDefault();
+    authRequests
+      .registerUser(user)
+      .then(() => {
+        this.props.history.push('/home');
+      })
+      .catch((err) => {
+        console.error('error register', err);
+      });
   };
 
   emailChange = (e) => {
@@ -43,7 +53,7 @@ class Register extends React.Component {
                   id="inputEmail"
                   placeholder="Email"
                   value={user.email}
-                 onChange={this.emailChange}
+                  onChange={this.emailChange}
                 />
               </div>
             </div>
@@ -53,26 +63,26 @@ class Register extends React.Component {
               </label>
               <div className="col-sm-10">
                 <input
-                type="password"
-                className="form-control"
-                id="inputPassword"
-                placeholder="Password"
-                value={user.password}
-                onChange={this.passwordChange}
+                  type="password"
+                  className="form-control"
+                  id="inputPassword"
+                  placeholder="Password"
+                  value={user.password}
+                  onChange={this.passwordChange}
                 />
               </div>
             </div>
             <div className="form-group">
               <div className="col-sm-offset-2 col-sm-10 text-center">
-                {/* <Link to="/login">Need to Login?</Link> */}
+                <Link to="/login">Need to Login?</Link>
               </div>
             </div>
             <div className="form-group">
               <div className="col-sm-offset-2 col-sm-10">
                 <button
-                type="submit"
-                className="btn btn-default col-xs-12"
-                onClick={this.registerClickEvent}
+                  type="submit"
+                  className="btn btn-default col-xs-12"
+                  onClick={this.registerClickEvent}
                 >
                   Register
                 </button>
