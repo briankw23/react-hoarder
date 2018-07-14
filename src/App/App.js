@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
+import Home from '../components/Home/Home';
+// import AllStuff from '../components/AllStuff/AllStuff';
+import Login from '../components/Login/Login';
+// import MyStuff from '../components/MyStuff/Mystuff';
+import Register from '../components/Register/Register';
+// import SingleStuffItem from '../components/SingleStuffItem/SingleStuffItem';
+import fbConnection from '../firebaseRequests/connection';
+fbConnection();
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+       <BrowserRouter>
+        <div>
+        {/* <Navbar/> */}
+      <div className="container">
+             <div className="row">
+                             <Switch>
+                 <Route  path="/" exact component={Home} />
+              </Switch>
+           </div>
+         </div>
+         </div>
+       </BrowserRouter>
+     </div>
+      // <div>
+      //   // {/* <AllStuff/>
+      //   // <Login/>
+      //   // <MyStuff/>
+      //   // <Register/>
+      //   // <SingleStuffItem/> */}
+      // </div>
     );
   }
 }
